@@ -8,5 +8,6 @@ namespace classlibrary
 {
     public class Class1
     {
+        Console.WriteLine("ziemniak");
     }
 }

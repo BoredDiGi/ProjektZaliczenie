@@ -11,7 +11,11 @@ namespace ProjektZaliczenie
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hello world");
+            int c = 3;
+            if(Class1.test(c) == true)
+            {
+                Console.WriteLine("TRUE");
+            }
         }
     }
 }

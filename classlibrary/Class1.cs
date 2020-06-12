@@ -8,6 +8,11 @@ namespace classlibrary
 {
     public class Class1
     {
-        Console.WriteLine("ziemniak");
+        public static bool test(int a)
+        {
+            
+            return true;
+        }
     }
 }
+

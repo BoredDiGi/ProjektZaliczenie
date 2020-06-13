@@ -34,6 +34,19 @@ namespace classlibrary
             } while (a == ck);
             return a;
         }
+       
+        public static bool highscore(string[] max, int newmax, int cmax)
+        {
+            if (cmax > newmax)
+            {
+                max[0] = cmax.ToString();
+                System.IO.File.WriteAllLines("../../bestscore.txt", max);
+                Console.WriteLine("najlepszy wynik pobity");
+                return true;
+            }
+            else
+                return false;
+        }
 
     }
 }

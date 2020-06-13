@@ -10,21 +10,34 @@ namespace ProjektZaliczenie
     class Program
     {
         static void Main(string[] args)
-        {
-            Console.Title = "gra logiczna";
+        {   Console.Title = "Wisielec the game";
+            int c = 0;
+            string[] max = System.IO.File.ReadAllLines("../../bestscore.txt");
+            string[] texts = System.IO.File.ReadAllLines("../../text.txt");
+            Console.WriteLine(texts[0]);
+            int newmax = int.Parse(max[0]);
+            int ckmax = 0;
             do
             {
+                //Console.Clear();
                 Console.Write("wciśnij 1 aby grać, każda inna cyfra wyłączy grę :) : ");
-                int c = int.Parse(Console.ReadLine());
+                c = int.Parse(Console.ReadLine());
                 if (lib.menu(c) == true)
                 {
+                    ckmax++;
                 }
                 else
                 {
                     break;
                 }
-                Console.WriteLine("Zagrajmy w grę...");
-                
+                Console.WriteLine("Zagrajmy w grę, najwyższy wynik wynosi: "+ newmax + " , a obecny wynik wynosi: " + ckmax);
+
+                if (ckmax > newmax)
+                {
+                    newmax = ckmax;
+                    max[0] = ckmax.ToString();
+                    System.IO.File.WriteAllLines("../../bestscore.txt", max);
+                }
             } while (true);         
         }
 

@@ -6,13 +6,24 @@ using System.Threading.Tasks;
 
 namespace classlibrary
 {
-    public class Class1
+    public class lib
     {
-        public static bool test(int a)
+        public static bool menu(int m)
         {
-            
-            return true;
+            if (m == 1)
+            {
+                Console.WriteLine("Wybrano grę");
+                return true;
+            }
+            else
+            {
+               
+                Console.WriteLine("kończę działanie, wciśnij dowolny przycisk aby zakończyć");
+                Console.ReadLine(); 
+                return false;
+            }
         }
+
     }
 }
 

@@ -11,11 +11,22 @@ namespace ProjektZaliczenie
     {
         static void Main(string[] args)
         {
-            int c = 3;
-            if(Class1.test(c) == true)
+            Console.Title = "gra logiczna";
+            do
             {
-                Console.WriteLine("TRUE");
-            }
+                Console.Write("wciśnij 1 aby grać, każda inna cyfra wyłączy grę :) : ");
+                int c = int.Parse(Console.ReadLine());
+                if (lib.menu(c) == true)
+                {
+                }
+                else
+                {
+                    break;
+                }
+                Console.WriteLine("Zagrajmy w grę...");
+                
+            } while (true);         
         }
+
     }
 }

@@ -24,6 +24,16 @@ namespace classlibrary
                 return false;
             }
         }
+        public static int randomizer(int len, int ck)
+        {
+            int a;
+            do
+            {
+                Random rnd = new Random();
+                a = rnd.Next(len - 1);
+            } while (a == ck);
+            return a;
+        }
 
     }
 }

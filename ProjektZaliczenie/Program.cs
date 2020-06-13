@@ -17,6 +17,7 @@ namespace ProjektZaliczenie
             Console.WriteLine(texts[0]);
             int newmax = int.Parse(max[0]);
             int ckmax = 0;
+            int ckrand = texts.Length + 1;
             do
             {
                 //Console.Clear();
@@ -31,7 +32,8 @@ namespace ProjektZaliczenie
                     break;
                 }
                 Console.WriteLine("Zagrajmy w grę, najwyższy wynik wynosi: "+ newmax + " , a obecny wynik wynosi: " + ckmax);
-
+                ckrand = lib.randomizer(texts.Length, ckrand);
+                Console.WriteLine("wylosowano wyraz: " + texts[ckrand]);
                 if (ckmax > newmax)
                 {
                     newmax = ckmax;

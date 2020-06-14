@@ -8,7 +8,7 @@ namespace classlibrary
 {
     public class lib
     {
-        public static bool menu(int m)
+        /*public static bool menu(int m)
         {
             if (m == 1)
             {
@@ -23,7 +23,7 @@ namespace classlibrary
                 Console.ReadLine(); 
                 return false;
             }
-        }
+        }*/
         public static int randomizer(int len, int ck)
         {
             int a;
@@ -33,8 +33,7 @@ namespace classlibrary
                 a = rnd.Next(len - 1);
             } while (a == ck);
             return a;
-        }
-       
+        }  
         public static bool highscore(string[] max, int newmax, int cmax)
         {
             if (cmax > newmax)
@@ -49,7 +48,22 @@ namespace classlibrary
                 return false;
             }
         }
-
+    }
+    public class game
+    {
+        public static int gameengine(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("wylosowany wyraz ma: "+text.Length+" liter");
+            for(int counter = 0; counter < text.Length; counter++)
+            {
+                Console.Write(" _ ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.ResetColor();
+            return 0;
+        }
     }
 }
 

@@ -1,29 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace classlibrary
 {
     public class lib
     {
-        /*public static bool menu(int m)
-        {
-            if (m == 1)
-            {
-                Console.Clear();
-                Console.WriteLine("Wybrano grę");
-                return true;
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("kończę działanie, wciśnij dowolny przycisk aby zakończyć");
-                Console.ReadLine(); 
-                return false;
-            }
-        }*/
         public static int randomizer(int len, int ck)
         {
             int a;
@@ -48,10 +28,20 @@ namespace classlibrary
                 return false;
             }
         }
+        public static bool end()
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Clear();
+            Console.WriteLine("Kończę działanie, dziękuję za grę!");
+            Console.WriteLine("Wciśnij dowolny przycisk aby zakończyć");
+            Console.ReadKey();
+            return true;
+        }
     }
-    public class game
+    public class gameinitialize
     {
-        public static int gameengine(string text)
+        public static int gameprinter(string text)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("wylosowany wyraz ma: "+text.Length+" liter");

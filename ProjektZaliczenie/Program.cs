@@ -4,9 +4,6 @@ namespace ProjektZaliczenie
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            gameall.gamemode();
-        }
+        static void Main(string[] args) => gameall.gamemode();
     }
 }

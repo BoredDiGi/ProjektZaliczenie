@@ -54,6 +54,26 @@ namespace classlibrary
             Console.ResetColor();
             return 0;
         }
+      
+        public static bool gamechk(string texts)
+        {
+            gameinitialize.gameprinter(texts);
+            for (int a = 0; a < texts.Length; a++)
+            {
+                string comp = Console.ReadLine();
+                Console.WriteLine(texts[a]);
+                Console.WriteLine(comp);
+                for (int b = 0; b < texts.Length; b++)
+                {
+                    if (string.Equals(comp[0], texts[b]) == true)
+                    {
+                        return true;
+                    }
+                }
+            }
+        return false;                  
+        }
     }
+
 }
 

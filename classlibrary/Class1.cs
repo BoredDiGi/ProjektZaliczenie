@@ -14,7 +14,8 @@ namespace classlibrary
             } while (a == ck);
             return a;
         }  
-        public static bool highscore(string[] max, int newmax, int cmax)
+        //old highscore function, not in use
+        /*public static bool highscore(string[] max, int newmax, int cmax)
         {
             if (cmax > newmax)
             {
@@ -27,7 +28,7 @@ namespace classlibrary
             {
                 return false;
             }
-        }
+        }*/
         public static bool end()
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -57,21 +58,43 @@ namespace classlibrary
       
         public static bool gamechk(string texts)
         {
+            int counterletter = 0;
+            int test;
             gameinitialize.gameprinter(texts);
             for (int a = 0; a < texts.Length; a++)
             {
-                string comp = Console.ReadLine();
-                Console.WriteLine(texts[a]);
-                Console.WriteLine(comp);
+                test = texts.Length - a;
+                Console.WriteLine("masz jeszcze " + test + " szans na podanie litery");
+                string comp = Console.ReadLine().ToUpper();              
                 for (int b = 0; b < texts.Length; b++)
                 {
                     if (string.Equals(comp[0], texts[b]) == true)
                     {
+                        counterletter+=1;
+                        Console.WriteLine("poprawna litera, ilość poprawnych liter:" + counterletter);
+                    }
+                    if (counterletter >= texts.Length)
+                    {
+                        Console.WriteLine("gratulacje, zdobyłeś/aś punkt!");
                         return true;
                     }
                 }
             }
+            Console.WriteLine("niestety, nie udało się, spróbuj jeszcze raz!");
+            Console.WriteLine("Wciśnij dowolny klawisz aby kontynuować");
+            Console.ReadKey();
         return false;                  
+        }
+
+        public static string opener()
+        {
+            Console.WriteLine("witaj w mojej grze");
+            Console.WriteLine("Wisielec TheGame to gra komputerowa stworzona jako projekt na zaliczenie podstaw programowania");
+            Console.WriteLine("jej zasady są bardzo łatwe, przyjmujemy że masz tyle szans na podanie litery, ile jest liter w wyrazie");
+            Console.WriteLine("gdy podasz wszystkie poprawne litery, dostajesz 1 punkt");
+            Console.WriteLine("jeśli nie podasz wszystkich właściwych liter, nie dostajesz punktu");
+            Console.WriteLine("życzę miłej gry!");
+            return "z";
         }
     }
 

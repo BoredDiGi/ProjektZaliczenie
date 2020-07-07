@@ -10,6 +10,7 @@ namespace classlibrary
     {
         public static void gamemode()
         {
+            Console.Beep();
             Console.Title = "Wisielec the game";
             gameinitialize.opener();
             Console.WriteLine("kliknij przycisk aby zaakceptować");
@@ -41,9 +42,9 @@ namespace classlibrary
                     Console.WriteLine("najwyższy wynik: "+ newmax + " aktualny wynik: " + ckmax);
                     Console.WriteLine("wciśnij dowolny klawisz aby kontynuować");
                     Console.ReadKey();
-                    if ( newmax < ckmax)
+                    if ( newmax < ckmax)//if true ckmax is newmax
                     { 
-                        newmax = ckmax; //if true ckmax is newmax
+                        newmax = ckmax; 
                         save[0] = newmax.ToString();
                         System.IO.File.WriteAllLines("../../bestscore.txt", save);
                     }

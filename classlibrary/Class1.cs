@@ -56,7 +56,7 @@ namespace classlibrary
             return 0;
         }
       
-        public static bool gamechk(string texts)
+        public static bool gamechk(string texts)//letter check
         {
             int counterletter = 0;
             int test;
@@ -86,7 +86,7 @@ namespace classlibrary
         return false;                  
         }
 
-        public static string opener()
+        public static string opener() //information function
         {
             Console.WriteLine("witaj w mojej grze");
             Console.WriteLine("Wisielec TheGame to gra komputerowa stworzona jako projekt na zaliczenie podstaw programowania");

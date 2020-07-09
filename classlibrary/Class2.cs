@@ -50,7 +50,6 @@ namespace classlibrary
                             Console.ReadKey();
                         }
                     }
-
                     else if (c == "1")
                     {
                         Console.Clear();
@@ -83,14 +82,7 @@ namespace classlibrary
                         gameinitialize.opener();
                         Console.WriteLine("kliknij przycisk aby zaakceptować");
                         Console.ReadKey();
-                    }
-                    else if (c == "5")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("najwyższy wynik: " + newmax + "\naktualny wyniki: "+ ckmax);
-                        Console.WriteLine("kliknij przycisk aby zaakceptować");
-                        Console.ReadKey();
-                    }
+                    }                    
                     else if (c == "4")
                     {
                         Console.Clear();
@@ -101,7 +93,13 @@ namespace classlibrary
                         System.IO.File.WriteAllLines("../../bestscore.txt", save);
                         Console.WriteLine("kliknij aby kontynuować");
                         Console.ReadKey();
-
+                    }
+                    else if (c == "5")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("najwyższy wynik: " + newmax + "\naktualny wyniki: "+ ckmax);
+                        Console.WriteLine("kliknij przycisk aby zaakceptować");
+                        Console.ReadKey();
                     }
                     else if (c == "6")
                     {

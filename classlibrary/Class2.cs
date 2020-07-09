@@ -10,7 +10,7 @@ namespace classlibrary
     {
         public static void gamemode()
         {
-            Console.Title = "Wisielec the game";           
+            lib.tester();
             //variables section
             string c = "start"; //menu
             string[] max = System.IO.File.ReadAllLines("../../bestscore.txt"); //best/highscore data

@@ -7,12 +7,30 @@ namespace classlibrary
     {
         public static bool preloader(int lengthof)
         {
+            Console.Title = "Wisielec the game";
+            Console.WindowHeight = 14;
+            Console.WindowWidth = 70;
             if (lengthof > 2)
                 return true;
             else
                 return false;
         }
-        public static int randomizer(int len, int ck)
+        public static bool tester()//sprawdzanie czy pliki są na swoich miejscach
+        {        
+            try
+            {
+                string[] test1 = System.IO.File.ReadAllLines("../../bestscore.txt"); //best/highscore data
+                string[] test2 = System.IO.File.ReadAllLines("../../text.txt"); //text data
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("Brak wymaganych plików, upewnij się czy pliki: \n bestscore.txt \n text.txt \n są na odpowiednich miejscach \n następnie uruchom ponownie");
+                Console.ReadKey();
+                end();
+            }
+            return false;
+        }
+            public static int randomizer(int len, int ck)
         {
             int a;
             do
@@ -30,6 +48,7 @@ namespace classlibrary
             Console.WriteLine("Kończę działanie, dziękuję za grę!");
             Console.WriteLine("Wciśnij dowolny przycisk aby zakończyć");
             Console.ReadKey();
+            Environment.Exit(0);
             return true;
         }
     }
@@ -40,6 +59,10 @@ namespace classlibrary
             string texts = textsold.ToLower();
             var letters = new List<char>();
             var letter = new List<char>();
+            letter.Add(',');
+            letter.Add('.');
+            letter.Add(' ');
+            letter.Add('-');
             char let;
             int y;
             string lettest;
@@ -63,6 +86,11 @@ namespace classlibrary
                 else if (texts[a] == ',')
                 {
                     letters.Add(',');
+                    points++;
+                }
+                else if (texts[a] == '-')
+                {
+                    letters.Add('-');
                     points++;
                 }
                 else
@@ -98,12 +126,12 @@ namespace classlibrary
                 }
                 if (checker != 0)
                 {
-                    Console.WriteLine("podano tę samą literę");
+                    Console.WriteLine("podano tę samą literę, lub znak interpunkcyjny");
                 }
                 else
                 {
                     letter.Add(let); //dodawanie litery do listy już użytych liter
-                    Console.WriteLine("masz " + points + "liter, z " + (texts.Length - 1) + " wymaganych do ukończenia");
+                    Console.WriteLine("masz " + points + " liter (ze znakami interpunkcyjnymi), \n z " + (texts.Length - 1) + " wymaganych do ukończenia");
                     for (int e = 0; e < texts.Length; e++) //sprawdzanie czy podana litera znajduje się w wyrazie
                     { 
                         if (texts[e].Equals(let) == true)

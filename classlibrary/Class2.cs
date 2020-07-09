@@ -10,8 +10,7 @@ namespace classlibrary
     {
         public static void gamemode()
         {
-            Console.Title = "Wisielec the game";
-
+            Console.Title = "Wisielec the game";           
             //variables section
             string c = "start"; //menu
             string[] max = System.IO.File.ReadAllLines("../../bestscore.txt"); //best/highscore data
@@ -23,84 +22,92 @@ namespace classlibrary
             string[] save = new string[1];
             //end of variables section
             //function initializer
-            do
+            if (lib.preloader(texts.Length) == true)
             {
-                Console.Clear();
-                Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruje wyniki \n [0] wyłączy grę \n wybieram: ");
-                c = Console.ReadLine(); //menu switch
-                if (c == "0")
-                {
-                    break;
-                }
-                else if (c == "2")
+                do
                 {
                     Console.Clear();
-                    if (words.Count < 1)
+                    Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruje wyniki \n [0] wyłączy grę \n wybieram: ");
+                    c = Console.ReadLine(); //menu switch
+                    if (c == "0")
                     {
-                        Console.WriteLine("brak elementów do wyświetlenia");
-                        Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
-                        Console.ReadKey();
+                        break;
                     }
-                    else
+                    else if (c == "2")
                     {
-                        for (int pp = 0; pp < words.Count; pp++)
-                        Console.WriteLine(words[pp]);
-                        Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
-                        Console.ReadKey();
-                    }
-                }
-
-                else if(c == "1")
-                {
-                    Console.Clear();
-                    Console.WriteLine("Zagrajmy w grę, najwyższy wynik wynosi: " + newmax + " , a obecny wynik wynosi: " + ckmax);
-                    ckrand = lib.randomizer(texts.Length, ckrand); //initialize random engine
-                    words.Add(texts[ckrand]);
-                    if (gameinitialize.gamechk(texts[ckrand]) == true)
-                    {
-                        ckmax++;
-                        Console.WriteLine("najwyższy wynik: " + newmax + " aktualny wynik: " + ckmax);
-                        Console.WriteLine("wciśnij dowolny klawisz aby kontynuować");
-                        Console.ReadKey();
-                        if (newmax < ckmax)//if true ckmax is newmax
+                        Console.Clear();
+                        if (words.Count < 1)
                         {
-                            newmax = ckmax;
-                            save[0] = newmax.ToString();
-                            System.IO.File.WriteAllLines("../../bestscore.txt", save);
+                            Console.WriteLine("brak elementów do wyświetlenia");
+                            Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            for (int pp = 0; pp < words.Count; pp++)
+                                Console.WriteLine(words[pp]);
+                            Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                            Console.ReadKey();
                         }
                     }
-                    else
+
+                    else if (c == "1")
                     {
-                        Console.WriteLine("koniec szans");
-                        Console.WriteLine("kliknij aby kontynuować");
+                        Console.Clear();
+                        Console.WriteLine("Zagrajmy w grę, najwyższy wynik wynosi: " + newmax + " , a obecny wynik wynosi: " + ckmax);
+                        ckrand = lib.randomizer(texts.Length, ckrand); //initialize random engine
+                        words.Add(texts[ckrand]);
+                        if (gameinitialize.gamechk(texts[ckrand]) == true)
+                        {
+                            ckmax++;
+                            Console.WriteLine("najwyższy wynik: " + newmax + " aktualny wynik: " + ckmax);
+                            Console.WriteLine("wciśnij dowolny klawisz aby kontynuować");
+                            Console.ReadKey();
+                            if (newmax < ckmax)//if true ckmax is newmax
+                            {
+                                newmax = ckmax;
+                                save[0] = newmax.ToString();
+                                System.IO.File.WriteAllLines("../../bestscore.txt", save);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("koniec szans");
+                            Console.WriteLine("kliknij aby kontynuować");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (c == "3")
+                    {
+                        Console.Clear();
+                        gameinitialize.opener();
+                        Console.WriteLine("kliknij przycisk aby zaakceptować");
                         Console.ReadKey();
                     }
-                }
-                else if( c == "3")
-                {
-                    Console.Clear();
-                    gameinitialize.opener();
-                    Console.WriteLine("kliknij przycisk aby zaakceptować");
-                    Console.ReadKey();
-                }
-                else if( c == "4")
-                {
-                    Console.Clear();
-                    Console.WriteLine("wyzerowano wyniki");
-                    save[0] = "0";
-                    System.IO.File.WriteAllLines("../../bestscore.txt", save);
-                    Console.WriteLine("kliknij aby kontynuować");
-                    Console.ReadKey();
+                    else if (c == "4")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("wyzerowano wyniki");
+                        save[0] = "0";
+                        System.IO.File.WriteAllLines("../../bestscore.txt", save);
+                        Console.WriteLine("kliknij aby kontynuować");
+                        Console.ReadKey();
 
-                }
-                else
-                {
-                    Console.WriteLine("podano złą wartość");
-                    Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
-                    Console.ReadKey();
-                }
-            } while (true);
-            
+                    }
+                    else
+                    {
+                        Console.WriteLine("podano złą wartość");
+                        Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                        Console.ReadKey();
+                    }
+                } while (true);
+            }
+            else
+            {
+                Console.WriteLine("Za mało danych wejściowych w pliku text.txt, dodaj minimum 3 frazy i uruchom ponownie");
+                Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                Console.ReadKey();            
+            }
             lib.end();
         }
     }

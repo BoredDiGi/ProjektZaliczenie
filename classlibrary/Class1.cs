@@ -5,6 +5,13 @@ namespace classlibrary
 {
     public class lib
     {
+        public static bool preloader(int lengthof)
+        {
+            if (lengthof > 2)
+                return true;
+            else
+                return false;
+        }
         public static int randomizer(int len, int ck)
         {
             int a;

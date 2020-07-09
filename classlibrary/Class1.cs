@@ -15,21 +15,6 @@ namespace classlibrary
             } while (a == ck);
             return a;
         }  
-        //old highscore function, not in use
-        /*public static bool highscore(string[] max, int newmax, int cmax)
-        {
-            if (cmax > newmax)
-            {
-                max[0] = cmax.ToString();
-                System.IO.File.WriteAllLines("../../bestscore.txt", max);
-                Console.WriteLine("najlepszy wynik pobity");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }*/
         public static bool end()
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -43,66 +28,6 @@ namespace classlibrary
     }
     public class gameinitialize
     {
-        /*public static int gameprinter(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("wylosowany wyraz ma: "+text.Length+" liter");
-            for(int counter = 0; counter < text.Length; counter++)
-            {
-                Console.Write(" _ ");
-            }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.ResetColor();
-            return 0;
-            
-        }*/
-
-        /*public static bool gamechk(string texts)//letter check
-        {
-            int counterletter = 0;
-            int test;
-            int checker;
-            var letters = new List<string>();
-            gameinitialize.gameprinter(texts);
-            for (int a = 0; a < texts.Length; a++)
-            {
-                checker = 0;
-                test = texts.Length - a;
-                Console.WriteLine("masz jeszcze " + test + " szans na podanie litery");
-                string comp = Console.ReadLine().ToUpper();
-                letters.Add(comp);              
-                for (int b = 0; b < texts.Length; b++)
-                {
-
-                    for (int c = 0; c == letters.Count; c++)
-                    {
-                        Console.WriteLine(letters[c]);
-                        if (string.Equals(comp[0], letters[c]) == false)
-                        {
-                            Console.WriteLine("podano drugi raz tą samą literę");
-                            a--;
-                            checker = 1;
-                        }
-                    }
-
-                    if (string.Equals(comp[0], texts[b]) == true && checker != 1)
-                    {
-                        counterletter+=1;
-                        Console.WriteLine("poprawna litera, ilość poprawnych liter:" + counterletter);
-                    }
-                    if (counterletter >= texts.Length)
-                    {
-                        Console.WriteLine("gratulacje, zdobyłeś/aś punkt!");
-                        return true;
-                    }
-                }
-            }
-            Console.WriteLine("niestety, nie udało się, spróbuj jeszcze raz!");
-            Console.WriteLine("Wciśnij dowolny klawisz aby kontynuować");
-            Console.ReadKey();
-        return false;                  
-        }*/
         public static bool gamechk(string texts)//letter check
         {
             var letters = new List<char>();
@@ -112,7 +37,10 @@ namespace classlibrary
             string lettest;
             int checker;
             int points = 0;
-            for (int a = 0; a < texts.Length; a++)
+            int lll = 0;
+            int now = 10;
+            int nowsupp = 0;
+            for (int a = 0; a < texts.Length; a++) //dodawanie ' ' lub '_' w zależności od znaku
             {
                 if (texts[a] == ' ')
                 {
@@ -122,16 +50,18 @@ namespace classlibrary
                 else
                     letters.Add('_');
             }
-            
-            for (int b = 0; b < texts.Length; b++)
+            lll = points;
+            for (int c = 0; c < letters.Count; c++)//wypisywanie frazy
             {
-                
+                Console.Write(letters[c]);
+            }
+            Console.WriteLine();
+            for (int b = 1; b > 0; b++)//główna funkcja programu
+            {
+                nowsupp = 0;
+                Console.WriteLine("Pozostało prób: " + now);
                 checker = 0;
-                for (int c = 0; c < letters.Count; c++)
-                {
-                    Console.Write(letters[c]);
-                }
-                do
+                do //autorskie sprawdzanie czy podano tylko 1 znak
                 {
                     Console.WriteLine();
                     Console.WriteLine("podaj jedną literę, gdy podasz więcej program poprosi jeszcze raz");
@@ -139,9 +69,9 @@ namespace classlibrary
                     y = lettest.Length;
                 } while (y != 1);
 
-                let = char.Parse(lettest);      
-                
-                for(int d = 0; d < letter.Count; d++)
+                let = char.Parse(lettest);
+                Console.Clear();
+                for(int d = 0; d < letter.Count; d++)//sprawdzanie powtórzenia litery
                 {
                     if(letter[d].Equals(let) == true)
                     checker++;
@@ -152,23 +82,37 @@ namespace classlibrary
                 }
                 else
                 {
-                    letter.Add(let);
-                    Console.WriteLine("masz " + points + "liter, z " + texts.Length + " wymaganych do ukończenia");
-                    for (int e = 0; e < texts.Length; e++)
-                    {
-                        
+                    letter.Add(let); //dodawanie litery do listy już użytych liter
+                    Console.WriteLine("masz " + points + "liter, z " + (texts.Length - 1) + " wymaganych do ukończenia");
+                    for (int e = 0; e < texts.Length; e++) //sprawdzanie czy podana litera znajduje się w wyrazie
+                    { 
                         if (texts[e].Equals(let) == true)
                         {
                             letters[e] = let;
                             points++;
-                        }
-                        if(points == texts.Length)
-                        {
-                            Console.WriteLine("gratulację! Zdobyto punkt!");
-                            return true;
+                            nowsupp++;
                         }
                     }
+                    if(nowsupp == 0)
+                    {
+                        now--;
+                    }
+                    if(now == 0)
+                    {
+                        return false;
+                    }
+
                 }
+                for (int c = 0; c < letters.Count; c++)//wypisywanie frazy
+                {
+                    Console.Write(letters[c]);
+                }
+                Console.WriteLine();
+                if(points == texts.Length)//sprawdzanie czy osiągnięto zwycięstwo
+                {
+                    Console.WriteLine("gratulację! Zdobyto punkt!");
+                    return true;
+                }                
             }
 
 

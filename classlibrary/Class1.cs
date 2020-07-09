@@ -28,8 +28,9 @@ namespace classlibrary
     }
     public class gameinitialize
     {
-        public static bool gamechk(string texts)//letter check
+        public static bool gamechk(string textsold)//letter check
         {
+            string texts = textsold.ToLower();
             var letters = new List<char>();
             var letter = new List<char>();
             char let;
@@ -47,14 +48,26 @@ namespace classlibrary
                     letters.Add(' ');
                     points++;
                 }
+                else if(texts[a] == '.')
+                {
+                    letters.Add('.');
+                    points++;
+                }
+                else if (texts[a] == ',')
+                {
+                    letters.Add(',');
+                    points++;
+                }
                 else
                     letters.Add('_');
             }
             lll = points;
+            Console.ForegroundColor = ConsoleColor.Green;
             for (int c = 0; c < letters.Count; c++)//wypisywanie frazy
             {
                 Console.Write(letters[c]);
             }
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             for (int b = 1; b > 0; b++)//główna funkcja programu
             {
@@ -65,7 +78,7 @@ namespace classlibrary
                 {
                     Console.WriteLine();
                     Console.WriteLine("podaj jedną literę, gdy podasz więcej program poprosi jeszcze raz");
-                    lettest = Console.ReadLine().ToString().ToUpper();
+                    lettest = Console.ReadLine().ToString().ToLower();
                     y = lettest.Length;
                 } while (y != 1);
 
@@ -103,10 +116,12 @@ namespace classlibrary
                     }
 
                 }
+                Console.ForegroundColor = ConsoleColor.Green;
                 for (int c = 0; c < letters.Count; c++)//wypisywanie frazy
                 {
                     Console.Write(letters[c]);
                 }
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
                 if(points == texts.Length)//sprawdzanie czy osiągnięto zwycięstwo
                 {
@@ -123,7 +138,7 @@ namespace classlibrary
         {
             Console.WriteLine("witaj w mojej grze");
             Console.WriteLine("Wisielec TheGame to gra komputerowa stworzona jako projekt na zaliczenie podstaw programowania");
-            Console.WriteLine("jej zasady są bardzo łatwe, przyjmujemy że masz tyle szans na podanie litery, ile jest liter w wyrazie");
+            Console.WriteLine("jej zasady są bardzo łatwe, 10 razy możesz podać błędną literę");
             Console.WriteLine("gdy podasz wszystkie poprawne litery, dostajesz 1 punkt");
             Console.WriteLine("jeśli nie podasz wszystkich właściwych liter, nie dostajesz punktu");
             Console.WriteLine("życzę miłej gry!");

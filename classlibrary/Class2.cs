@@ -27,7 +27,7 @@ namespace classlibrary
                 do
                 {
                     Console.Clear();
-                    Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruje wyniki \n [0] wyłączy grę \n wybieram: ");
+                    Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruj wynik \n [5] wyniki \n [6] wszystkie frazy \n [0] wyłączy grę \n wybieram: ");
                     c = Console.ReadLine(); //menu switch
                     if (c == "0")
                     {
@@ -84,12 +84,29 @@ namespace classlibrary
                         Console.WriteLine("kliknij przycisk aby zaakceptować");
                         Console.ReadKey();
                     }
+                    else if (c == "5")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("najwyższy wynik: " + newmax + "\naktualny wyniki: "+ ckmax);
+                        Console.WriteLine("kliknij przycisk aby zaakceptować");
+                        Console.ReadKey();
+                    }
                     else if (c == "4")
                     {
                         Console.Clear();
                         Console.WriteLine("wyzerowano wyniki");
+                        ckmax = 0;
+                        newmax = 0;
                         save[0] = "0";
                         System.IO.File.WriteAllLines("../../bestscore.txt", save);
+                        Console.WriteLine("kliknij aby kontynuować");
+                        Console.ReadKey();
+
+                    }
+                    else if (c == "6")
+                    {
+                        Console.Clear();
+                        lib.allof();
                         Console.WriteLine("kliknij aby kontynuować");
                         Console.ReadKey();
 

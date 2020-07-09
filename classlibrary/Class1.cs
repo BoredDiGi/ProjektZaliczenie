@@ -51,6 +51,14 @@ namespace classlibrary
             Environment.Exit(0);
             return true;
         }
+
+        public static bool allof()
+        {
+            string[] texts = System.IO.File.ReadAllLines("../../text.txt"); //text data
+            for(int i = 0; i < texts.Length; i++)
+                Console.WriteLine(texts[i]);
+            return true;
+        }
     }
     public class gameinitialize
     {

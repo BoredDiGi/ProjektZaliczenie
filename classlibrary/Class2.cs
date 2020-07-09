@@ -50,12 +50,7 @@ namespace classlibrary
                         Console.ReadKey();
                     }
                 }
-                else if(c != "0" || c != "1" || c != "2")
-                {                  
-                    Console.WriteLine("podano złą wartość");
-                    Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
-                    Console.ReadKey();
-                }
+
                 else if(c == "1")
                 {
                     Console.WriteLine("Zagrajmy w grę, najwyższy wynik wynosi: " + newmax + " , a obecny wynik wynosi: " + ckmax);
@@ -74,6 +69,12 @@ namespace classlibrary
                             System.IO.File.WriteAllLines("../../bestscore.txt", save);
                         }
                     }
+                }
+                else
+                {
+                    Console.WriteLine("podano złą wartość");
+                    Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                    Console.ReadKey();
                 }
             } while (true);
             

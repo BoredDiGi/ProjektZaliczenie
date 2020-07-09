@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace classlibrary
 {
@@ -42,7 +43,7 @@ namespace classlibrary
     }
     public class gameinitialize
     {
-        public static int gameprinter(string text)
+        /*public static int gameprinter(string text)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("wylosowany wyraz ma: "+text.Length+" liter");
@@ -54,21 +55,38 @@ namespace classlibrary
             Console.WriteLine();
             Console.ResetColor();
             return 0;
-        }
-      
-        public static bool gamechk(string texts)//letter check
+            
+        }*/
+
+        /*public static bool gamechk(string texts)//letter check
         {
             int counterletter = 0;
             int test;
+            int checker;
+            var letters = new List<string>();
             gameinitialize.gameprinter(texts);
             for (int a = 0; a < texts.Length; a++)
             {
+                checker = 0;
                 test = texts.Length - a;
                 Console.WriteLine("masz jeszcze " + test + " szans na podanie litery");
-                string comp = Console.ReadLine().ToUpper();              
+                string comp = Console.ReadLine().ToUpper();
+                letters.Add(comp);              
                 for (int b = 0; b < texts.Length; b++)
                 {
-                    if (string.Equals(comp[0], texts[b]) == true)
+
+                    for (int c = 0; c == letters.Count; c++)
+                    {
+                        Console.WriteLine(letters[c]);
+                        if (string.Equals(comp[0], letters[c]) == false)
+                        {
+                            Console.WriteLine("podano drugi raz tą samą literę");
+                            a--;
+                            checker = 1;
+                        }
+                    }
+
+                    if (string.Equals(comp[0], texts[b]) == true && checker != 1)
                     {
                         counterletter+=1;
                         Console.WriteLine("poprawna litera, ilość poprawnych liter:" + counterletter);
@@ -84,9 +102,80 @@ namespace classlibrary
             Console.WriteLine("Wciśnij dowolny klawisz aby kontynuować");
             Console.ReadKey();
         return false;                  
-        }
+        }*/
+        public static bool gamechk(string texts)//letter check
+        {
+            var letters = new List<char>();
+            var letter = new List<char>();
+            char let;
+            int y;
+            string lettest;
+            int checker;
+            int points = 0;
+            for (int a = 0; a < texts.Length; a++)
+            {
+                if (texts[a] == ' ')
+                {
+                    letters.Add(' ');
+                    points++;
+                }
+                else
+                    letters.Add('_');
+            }
+            
+            for (int b = 0; b < texts.Length; b++)
+            {
+                
+                checker = 0;
+                for (int c = 0; c < letters.Count; c++)
+                {
+                    Console.Write(letters[c]);
+                }
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("podaj jedną literę, gdy podasz więcej program poprosi jeszcze raz");
+                    lettest = Console.ReadLine().ToString().ToUpper();
+                    y = lettest.Length;
+                } while (y != 1);
 
-        public static string opener() //information function
+                let = char.Parse(lettest);      
+                
+                for(int d = 0; d < letter.Count; d++)
+                {
+                    if(letter[d].Equals(let) == true)
+                    checker++;
+                }
+                if (checker != 0)
+                {
+                    Console.WriteLine("podano tę samą literę");
+                }
+                else
+                {
+                    letter.Add(let);
+                    Console.WriteLine("masz " + points + "liter, z " + texts.Length + " wymaganych do ukończenia");
+                    for (int e = 0; e < texts.Length; e++)
+                    {
+                        
+                        if (texts[e].Equals(let) == true)
+                        {
+                            letters[e] = let;
+                            points++;
+                        }
+                        if(points == texts.Length)
+                        {
+                            Console.WriteLine("gratulację! Zdobyto punkt!");
+                            return true;
+                        }
+                    }
+                }
+            }
+
+
+            Console.ReadKey();
+            return false;
+        }
+            public static string opener() //information function
         {
             Console.WriteLine("witaj w mojej grze");
             Console.WriteLine("Wisielec TheGame to gra komputerowa stworzona jako projekt na zaliczenie podstaw programowania");

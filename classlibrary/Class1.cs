@@ -120,9 +120,11 @@ namespace classlibrary
                 do //autorskie sprawdzanie czy podano tylko 1 znak
                 {
                     Console.WriteLine();
-                    Console.WriteLine("podaj jedną literę, gdy podasz więcej program poprosi jeszcze raz");
+                    Console.WriteLine("podaj jedną literę, gdy podasz więcej program poprosi jeszcze raz \n 'quit' aby wyzerować szanse i wyjść ");
                     lettest = Console.ReadLine().ToString().ToLower();
                     y = lettest.Length;
+                    if (lettest.Equals("quit")==true)
+                        return false;
                 } while (y != 1);
 
                 let = char.Parse(lettest);

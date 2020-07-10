@@ -12,7 +12,6 @@ namespace classlibrary
         {
             lib.tester();
             //variables section
-            string c = "start"; //menu
             string[] max = System.IO.File.ReadAllLines("../../bestscore.txt"); //best/highscore data
             string[] texts = System.IO.File.ReadAllLines("../../text.txt"); //text data
             var words = new List<string>();
@@ -22,35 +21,18 @@ namespace classlibrary
             string[] save = new string[1];
             //end of variables section
             //function initializer
-            if (lib.preloader(texts.Length) == true)
+            if (lib.preloader(texts.Length) == true)//words checker and start settings
             {
                 do
                 {
                     Console.Clear();
                     Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruj wynik \n [5] wyniki \n [6] wszystkie frazy \n [0] wyłączy grę \n wybieram: ");
-                    c = Console.ReadLine(); //menu switch
-                    if (c == "0")
+                    ConsoleKeyInfo info = Console.ReadKey();
+                    if (info.KeyChar == '0')
                     {
                         break;
                     }
-                    else if (c == "2")
-                    {
-                        Console.Clear();
-                        if (words.Count < 1)
-                        {
-                            Console.WriteLine("brak elementów do wyświetlenia");
-                            Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            for (int pp = 0; pp < words.Count; pp++)
-                                Console.WriteLine(words[pp]);
-                            Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
-                            Console.ReadKey();
-                        }
-                    }
-                    else if (c == "1")
+                    else if (info.KeyChar == '1')//game
                     {
                         Console.Clear();
                         Console.WriteLine("Zagrajmy w grę, najwyższy wynik wynosi: " + newmax + " , a obecny wynik wynosi: " + ckmax);
@@ -76,14 +58,31 @@ namespace classlibrary
                             Console.ReadKey();
                         }
                     }
-                    else if (c == "3")
+                    else if (info.KeyChar == '2')//last words
+                    {
+                        Console.Clear();
+                        if (words.Count < 1)
+                        {
+                            Console.WriteLine("brak elementów do wyświetlenia");
+                            Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            for (int pp = 0; pp < words.Count; pp++)
+                                Console.WriteLine(words[pp]);
+                            Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (info.KeyChar == '3')//description
                     {
                         Console.Clear();
                         gameinitialize.opener();
                         Console.WriteLine("kliknij przycisk aby zaakceptować");
                         Console.ReadKey();
-                    }                    
-                    else if (c == "4")
+                    }
+                    else if (info.KeyChar == '4')//scores reset
                     {
                         Console.Clear();
                         Console.WriteLine("wyzerowano wyniki");
@@ -94,22 +93,25 @@ namespace classlibrary
                         Console.WriteLine("kliknij aby kontynuować");
                         Console.ReadKey();
                     }
-                    else if (c == "5")
+                    else if (info.KeyChar == '5')//highscores
                     {
                         Console.Clear();
-                        Console.WriteLine("najwyższy wynik: " + newmax + "\naktualny wyniki: "+ ckmax);
+                        Console.WriteLine("najwyższy wynik: " + newmax + "\naktualny wyniki: " + ckmax);
                         Console.WriteLine("kliknij przycisk aby zaakceptować");
                         Console.ReadKey();
                     }
-                    else if (c == "6")
+                    else if (info.KeyChar == '6')//all words
                     {
                         Console.Clear();
                         lib.allof();
                         Console.WriteLine("kliknij aby kontynuować");
                         Console.ReadKey();
-
                     }
-                    else
+                    else if (info.KeyChar == '7')//in progress
+                    {
+                        Console.WriteLine("b");
+                    }
+                    else//bad key checker
                     {
                         Console.WriteLine("podano złą wartość");
                         Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");
@@ -117,7 +119,7 @@ namespace classlibrary
                     }
                 } while (true);
             }
-            else
+            else//words checker
             {
                 Console.WriteLine("Za mało danych wejściowych w pliku text.txt, dodaj minimum 3 frazy i uruchom ponownie");
                 Console.WriteLine("Kliknij dowolny klawisz aby kontynuować");

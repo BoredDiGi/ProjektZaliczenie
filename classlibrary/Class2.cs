@@ -26,7 +26,7 @@ namespace classlibrary
                 do
                 {
                     Console.Clear();
-                    Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruj wynik \n [5] wyniki \n [6] wszystkie frazy \n [0] wyłączy grę \n wybieram: ");
+                    Console.Write(" [1] aby grać \n [2] aby zobaczyć ostatnie słowa \n [3] by zobaczyć założenia \n [4] wyzeruj wynik \n [5] wyniki \n [6] wszystkie frazy \n [7] wylosuje frazę bez przechodzenia do gry \n [0] wyłączy grę \n wybieram: ");
                     ConsoleKeyInfo info = Console.ReadKey();
                     if (info.KeyChar == '0')
                     {
@@ -109,7 +109,12 @@ namespace classlibrary
                     }
                     else if (info.KeyChar == '7')//in progress
                     {
-                        Console.WriteLine("b");
+                        ckrand = lib.randomizer(texts.Length, ckrand);
+                        words.Add(texts[ckrand]);
+                        Console.Clear();
+                        Console.WriteLine(texts[ckrand]);
+                        Console.WriteLine("kliknij aby kontynuować");
+                        Console.ReadKey();
                     }
                     else//bad key checker
                     {

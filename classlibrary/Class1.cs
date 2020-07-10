@@ -51,7 +51,6 @@ namespace classlibrary
             Environment.Exit(0);
             return true;
         }
-
         public static bool allof()
         {
             string[] texts = System.IO.File.ReadAllLines("../../text.txt"); //text data
@@ -126,7 +125,6 @@ namespace classlibrary
                     if (lettest.Equals("quit")==true)
                         return false;
                 } while (y != 1);
-
                 let = char.Parse(lettest);
                 Console.Clear();
                 for(int d = 0; d < letter.Count; d++)//sprawdzanie powtórzenia litery
@@ -174,8 +172,6 @@ namespace classlibrary
                     return true;
                 }                
             }
-
-
             Console.ReadKey();
             return false;
         }
@@ -190,6 +186,5 @@ namespace classlibrary
             return "z";
         }
     }
-
 }
 
